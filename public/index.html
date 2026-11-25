@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101913">
+    <title>裂境競技場 | Riftbound Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="裂境競技場首頁">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span>裂境競技場<small>RIFTBOUND ARENA</small></span>
+        </a>
+        <div class="topbar-right">
+          <span class="server-status"><i></i>伺服器運作中</span>
+          <span class="version-tag">原型 0.1</span>
+        </div>
+      </header>
+
+      <section id="lobby" class="lobby">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> 即時對戰 · 1 對 1</p>
+          <h1>踏入裂境，<br><em>決勝於此。</em></h1>
+          <p class="hero-description">與對手在古老戰場正面交鋒。靈活走位、掌握距離，打出屬於你的勝利。</p>
+          <div class="feature-row">
+            <div class="feature"><span class="feature-icon">⌘</span><span>即時連線<small>房間碼快速開戰</small></span></div>
+            <div class="feature"><span class="feature-icon">◈</span><span>公平對決<small>簡單操作純粹競技</small></span></div>
+          </div>
+        </div>
+
+        <section class="match-card" aria-labelledby="match-title">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">MATCHMAKING</p>
+              <h2 id="match-title">準備好開戰了嗎？</h2>
+            </div>
+            <span class="card-emblem" aria-hidden="true">✦</span>
+          </div>
+          <button id="createRoom" class="primary-button" type="button">
+            <span>建立對戰房間</span><span aria-hidden="true">↗</span>
+          </button>
+          <div class="divider"><span>或加入好友房間</span></div>
+          <form id="joinForm" class="join-form">
+            <label for="roomCode">房間代碼</label>
+            <div class="join-controls">
+              <input id="roomCode" name="roomCode" type="text" maxlength="5" autocomplete="off" placeholder="輸入 5 位代碼" aria-label="輸入房間代碼">
+              <button class="join-button" type="submit">加入 <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+          <p id="lobbyMessage" class="message" role="status" aria-live="polite"></p>
+          <div class="card-footer"><span class="pulse-dot"></span> 等待勇者加入戰場</div>
+        </section>
+
+        <div class="lobby-bottom">
+          <span>一場對決，只需一個房間碼。</span>
+          <span>移動 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <b>·</b> 攻擊 <kbd>空白鍵</kbd></span>
+        </div>
+      </section>
+
+      <section id="arena" class="arena is-hidden" aria-label="對戰場地">
+        <div class="arena-toolbar">
+          <div class="match-label"><span class="pulse-dot"></span><span id="matchStatus">等待對手加入</span></div>
+          <div class="room-display">房間碼 <strong id="activeRoomCode">-----</strong><button id="copyCode" class="copy-button" type="button" aria-label="複製房間碼">複製</button></div>
+          <button id="leaveRoom" class="leave-button" type="button">離開對戰 <span aria-hidden="true">×</span></button>
+        </div>
+
+        <div class="arena-layout">
+          <aside class="score-panel">
+            <p class="eyebrow">YOUR SIDE</p>
+            <div class="score-player"><span class="avatar avatar-blue">✦</span><div><strong>裂境遊俠</strong><small>勇者 01</small></div></div>
+            <div class="health-track"><span id="ownHealth"></span></div>
+            <div class="score-numbers"><span>勝場</span><strong id="ownWins">0</strong></div>
+            <div class="objective"><span class="objective-icon">⌖</span><p><strong>對決目標</strong><small>將對手生命值降至 0</small></p></div>
+          </aside>
+
+          <div class="game-frame">
+            <canvas id="gameCanvas" width="960" height="600" aria-label="裂境對戰場地"></canvas>
+            <div id="gameOverlay" class="game-overlay">
+              <div class="searching-ring"><span></span></div>
+              <p>等待對手加入</p>
+              <small>把房間碼分享給朋友，即刻開戰</small>
+            </div>
+            <div id="roundBanner" class="round-banner is-hidden"></div>
+          </div>
+
+          <aside class="score-panel opponent-panel">
+            <p class="eyebrow">OPPONENT</p>
+            <div class="score-player"><span class="avatar avatar-gold">✦</span><div><strong>對手</strong><small>等待加入…</small></div></div>
+            <div class="health-track enemy-health"><span id="enemyHealth"></span></div>
+            <div class="score-numbers"><span>勝場</span><strong id="enemyWins">0</strong></div>
+            <div class="objective"><span class="objective-icon">⚔</span><p><strong>戰鬥提示</strong><small>靠近對手後按空白鍵攻擊</small></p></div>
+          </aside>
+        </div>
+
+        <div class="arena-footer">
+          <div class="control-hint"><span class="key-cluster"><kbd>W</kbd><span><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span></span><span>移動</span><b>·</b><kbd class="space-key">空白鍵</kbd><span>攻擊</span></div>
+          <p id="arenaMessage" role="status" aria-live="polite">與對手拉近距離，抓住時機出手。</p>
+          <span class="map-name">古林裂境 <i>·</i> 1V1</span>
+        </div>
+      </section>
+    </main>
+    <script src="/client.js"></script>
+  </body>
+</html>

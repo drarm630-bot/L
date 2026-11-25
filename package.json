@@ -1,0 +1,12 @@
+{
+  "name": "riftbound-arena",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Original browser-based 1v1 multiplayer arena prototype",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
