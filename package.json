@@ -1,12 +1,9 @@
 {
-  "name": "riftbound-arena",
+  "name": "tofu-riichi-mahjong",
   "version": "1.0.0",
   "private": true,
-  "description": "Original browser-based 1v1 multiplayer arena prototype",
+  "description": "Solo three-player East-wind Riichi Mahjong against AI",
   "scripts": {
     "start": "node server.js"
-  },
-  "dependencies": {
-    "ws": "^8.18.0"
   }
 }
