@@ -1,16 +1,14 @@
 # 東風牌桌
 
-瀏覽器版三人日式立直麻將。你與兩位電腦 AI 進行東風戰，沒有真人配對或連線。
+純前端瀏覽器版三人日式立直麻將。你與兩位電腦 AI 進行東風戰，沒有真人配對、後端伺服器或連線需求。
 
-## 本機啟動
+## 本機遊玩
 
-需要 Node.js 18 或更新版本。
+直接用瀏覽器開啟 `public/index.html` 即可遊玩，不需要安裝 Node.js 或其他套件。
 
-```powershell
-npm start
-```
+## 部署到 GitHub Pages
 
-在瀏覽器開啟 `http://localhost:3000` 即可開始。遊戲不需要額外套件。
+此儲存庫已設定 GitHub Actions：推送到 `main` 後會自動將 `public/` 發布到 GitHub Pages。第一次部署前，請到儲存庫 **Settings → Pages**，將 **Build and deployment → Source** 設為 **GitHub Actions**。之後可從同一頁取得網站網址。
 
 ## 規則與操作
 

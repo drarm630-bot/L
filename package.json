@@ -1,9 +1,0 @@
-{
-  "name": "tofu-riichi-mahjong",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Solo three-player East-wind Riichi Mahjong against AI",
-  "scripts": {
-    "start": "node server.js"
-  }
-}
