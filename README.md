@@ -8,7 +8,7 @@
 
 ## 部署到 GitHub Pages
 
-此儲存庫已設定 GitHub Actions：推送到 `main` 後會自動啟用 GitHub Pages，並將 `public/` 發布。部署完成後，可從儲存庫 **Settings → Pages** 取得網站網址；如果自動啟用失敗，請在 **Build and deployment → Source** 將來源設為 **GitHub Actions**。
+此儲存庫已設定 GitHub Actions：第一次部署前，請到儲存庫 **Settings → Pages**，將 **Build and deployment → Source** 設為 **GitHub Actions**。之後推送到 `main` 會自動將 `public/` 發布；網站網址可從同一頁取得。
 
 ## 規則與操作
 
